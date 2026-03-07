@@ -133,7 +133,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Responsivo - Menu Mobile e Tablet */
+        /* Responsivo - Menu Mobile e Tablet (LIMPO E CORRIGIDO) */
         @media (max-width: 992px) {
             .nav-container {
                 padding: 1rem 0;
@@ -143,20 +143,19 @@
             .nav-links {
                 display: none; 
                 position: absolute;
-                top: 100%; 
-                right: 0; 
+                top: 100%; /* Cola perfeitamente na barra */
+                right: 0; /* Alinhado à direita */
                 left: auto; 
                 
-                /* Largura Proporcional (Lado a Lado) */
-                width: 60vw; /* Ocupa 60% da largura da tela */
-                min-width: 180px; /* Limite mínimo para a palavra não quebrar */
-                max-width: 260px; /* Limite máximo para não virar um outdoor */
+                /* Minimalismo: Largura exata apenas para caber a maior palavra */
+                width: auto; 
+                min-width: 170px; /* Caixinha enxuta */
                 
                 flex-direction: column;
                 background: var(--darker-bg); 
-                border-top: 1px solid var(--border-color); /* A tampa da caixa */
-                border-left: 1px solid var(--border-color); 
-                border-bottom: 1px solid var(--border-color); 
+                border-top: 1px solid var(--border-color); /* Linha de fechamento no topo */
+                border-left: 1px solid var(--border-color); /* Linha lateral */
+                border-bottom: 1px solid var(--border-color); /* Linha de baixo */
                 z-index: 9999; 
                 gap: 0;
             }
@@ -166,41 +165,19 @@
             }
 
             .nav-links li {
-                width: 100%;
+                width: 100%; /* Garante que as linhas preencham tudo */
             }
 
             .nav-links a {
                 display: block; 
-                
-                /* Altura Proporcional (Cima a Baixo) */
-                padding: 2.5vh 1.5rem; /* O 2.5vh faz a altura respirar de acordo com o tamanho da tela do celular */
-                
-                text-align: left; 
+                padding: 0.9rem 1.2rem; /* Preenchimento menor, mais elegante */
+                text-align: left; /* Justificado à esquerda */
                 border-bottom: 1px solid #1a1a1a; 
-                font-size: 1.05rem;
+                font-size: 0.95rem; /* Fonte sofisticada */
             }
 
             .nav-links li:last-child a {
-                border-bottom: none; 
-            }
-
-            .nav-links li:last-child a {
-                border-bottom: none; /* Remove a linha do último item para um acabamento liso */
-            }
-
-            .nav-links.active {
-                display: flex; 
-            }
-
-            .nav-links a {
-                padding: 1.5rem 2rem; /* Aumenta o espaço para ficar mais fácil de clicar com o dedo */
-                text-align: center; /* Centraliza os textos, trazendo a estética premium */
-                border-bottom: 1px solid #1a1a1a; /* Linha divisória super discreta entre os links */
-                font-size: 1.1rem; /* Deixa a letra um pouquinho maior no celular */
-            }
-
-            .nav-links li:last-child a {
-                border-bottom: none; /* Tira a linha do último item para o acabamento ficar perfeito */
+                border-bottom: none; /* Sem linha sobrando no último item */
             }
 
             .nav-toggle {
@@ -433,6 +410,89 @@
             box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.9), 0px 6px 20px rgba(37, 211, 102, 0.5);
         }
 
+        /* --- Rodapé (Footer) Premium --- */
+        footer {
+            background-color: var(--darker-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 2rem 1.5rem 2rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1000px; /* Deixei um pouco mais estreito para as duas colunas não ficarem "perdidas" */
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr; /* Divide o espaço perfeitamente entre a marca e os contatos */
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-hover);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand .footer-logo img {
+            height: 24px;
+            width: auto;
+        }
+
+        .footer-brand p {
+            color: #a0aab5;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-width: 400px; /* Mantém o texto da marca com uma quebra de linha bonita */
+        }
+
+        .footer-col h4 {
+            color: var(--accent-hover);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-contact p {
+            color: #a0aab5;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1a1a1a;
+            color: #555555;
+            font-size: 0.85rem;
+        }
+
+        /* Responsividade do Rodapé */
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2.5rem;
+            }
+            .footer-brand .footer-logo,
+            .footer-contact p {
+                justify-content: center;
+            }
+            .footer-contact p svg {
+            color: var(--accent); /* Deixa o ícone prateado, super discreto e chique */
+            min-width: 18px; /* Impede que o ícone amasse caso o texto pule de linha no celular */
+        }
+            .footer-brand p {
+                margin: 0 auto;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -521,6 +581,44 @@
             </div>
         </div>
     </section>
+
+<footer id="contato">
+        <div class="footer-container">
+            
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="brasao.jpg" alt="Brasão JTI Soluções">
+                    JTI Soluções
+                </div>
+                <p>A base tecnológica segura para o crescimento constante do seu negócio.</p>
+            </div>
+
+           <div class="footer-col footer-contact">
+                <h4>Fale Conosco</h4>
+                <p>
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                    (61) 99291-7593
+                </p>
+                <p>
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    contato@jtisolucoes.com.br
+                </p>
+                <p>
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    Presencial: Centro-Oeste e Minas Gerais
+                </p>
+                <p>
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    Online: Atendimento para todo o Brasil
+                </p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2026 JTI Soluções. Todos os direitos reservados.
+        </div>
+    </footer>
 
     <a href="https://wa.me/5561992917593?text=Olá! Gostaria de saber mais sobre as soluções da JTI." class="whatsapp-float" target="_blank">
         <svg viewBox="0 0 448 512" width="32" height="32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
