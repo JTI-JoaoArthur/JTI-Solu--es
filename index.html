@@ -11,7 +11,7 @@
     <meta property="og:title" content="JTI Soluções | A base tecnológica segura para o crescimento do seu negócio.">
     <meta property="og:description" content="Transforme a TI da sua empresa com a JTI Soluções. Projetos de infraestrutura e segurança digital, suporte técnico de excelência e desenvolvimento sob medida. Fale conosco!.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://jtisolucoes.dev.br/brasao.jpg">
+    <meta property="og:image" content="https://jtisolucoes.dev.br/capa-whatsapp.jpg">
     <meta property="og:url" content="https://jtisolucoes.dev.br">
     <style>
         * {
@@ -808,6 +808,63 @@
                 }
             });
         }
+
+// --- 3. Envio Silencioso do Formulário (Sem sair da página) ---
+        const formContato = document.querySelector('.form-jti');
+        
+        if (formContato) {
+            formContato.addEventListener('submit', function(e) {
+                e.preventDefault(); // Impede o recarregamento e a tela branca da FormSubmit
+                
+                const btnSubmit = formContato.querySelector('button[type="submit"]');
+                const textoOriginal = btnSubmit.innerText;
+                
+                // Muda o visual do botão enquanto envia
+                btnSubmit.innerText = 'Enviando...';
+                btnSubmit.style.opacity = '0.7';
+                btnSubmit.disabled = true;
+
+                const formData = new FormData(formContato);
+
+                fetch(formContato.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Sucesso: Botão fica verde WhatsApp
+                    btnSubmit.innerText = 'Mensagem Enviada com Sucesso!';
+                    btnSubmit.style.background = 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)';
+                    btnSubmit.style.color = '#fff';
+                    btnSubmit.style.opacity = '1';
+                    
+                    formContato.reset(); // Limpa os campos automaticamente
+                    
+                    // Retorna o botão ao normal depois de 4 segundos
+                    setTimeout(() => {
+                        btnSubmit.innerText = textoOriginal;
+                        btnSubmit.style.background = '';
+                        btnSubmit.style.color = '';
+                        btnSubmit.disabled = false;
+                    }, 4000);
+                })
+                .catch(error => {
+                    // Se der erro de internet
+                    btnSubmit.innerText = 'Erro na conexão. Tente novamente.';
+                    btnSubmit.style.background = '#ff6b6b';
+                    
+                    setTimeout(() => {
+                        btnSubmit.innerText = textoOriginal;
+                        btnSubmit.style.background = '';
+                        btnSubmit.disabled = false;
+                    }, 4000);
+                });
+            });
+        }
+
     </script>
 
 </body>
