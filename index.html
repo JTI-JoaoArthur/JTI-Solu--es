@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <link rel="preload" href="brasao.jpg" as="image">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>JTI Soluções | A base tecnológica segura para o crescimento do seu negócio.</title>
+    <title>JTI Soluções | Desenvolvimento e Infraestrutura de TI</title>
 
     <meta property="og:title" content="JTI Soluções | Desenvolvimento e Infraestrutura de TI">
 
@@ -588,15 +589,47 @@
             }
         }
 
+        /* --- EFEITO DA LOGO E TEXTO EM ESTEIRA --- */
+        .logo-animada {
+            position: relative;
+            z-index: 2; /* Garante que a logo seja o "muro" na frente do texto */
+            animation: fadeLogo 0.4s ease forwards;
+            background-color: var(--darker-bg); /* Ajuda a esconder o texto atrás */
+        }
+
+        .mascara-esteira {
+            display: inline-block;
+            overflow: hidden; /* Corta tudo que estiver fora do espaço invisível */
+            line-height: 1;
+            padding-left: 2px; /* Dá um respiro para o texto não raspar na imagem */
+        }
+
+        .texto-animado {
+            display: inline-block;
+            transform: translateX(-105%); /* Esconde o texto todo para a esquerda */
+            animation: deslizarEsteira 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 0.3s; /* Só sai da esteira 0.3 segundos depois */
+        }
+
+        @keyframes fadeLogo {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes deslizarEsteira {
+            to { transform: translateX(0); }
+        }
+
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="nav-container">
-            <div class="logo">
-                <img src="brasao.jpg" alt="Brasão JTI Soluções">
-                JTI Soluções
+        <div class="logo">
+                <img src="brasao.jpg" alt="Brasão JTI Soluções" class="logo-animada">
+                <span class="mascara-esteira">
+                    <span class="texto-animado">JTI Soluções</span>
+                </span>
             </div>
             
             <ul class="nav-links" id="navLinks">
