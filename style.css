@@ -608,3 +608,59 @@
                 opacity: 1; 
             }
         }
+
+        /* --- FAIXA DE TECNOLOGIAS (EMPRÉSTIMO DE CREDIBILIDADE) --- */
+.tecnologias-bar {
+    padding: 40px 20px;
+    background-color: rgba(0, 0, 0, 0.2); /* Fundo um pouco mais escuro para destacar */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.tech-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tech-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.tech-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Permite quebrar a linha no celular */
+    gap: 40px;
+}
+
+.tech-item {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.25); /* Efeito marca d'água / cinza escuro */
+    letter-spacing: -0.5px;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+/* Efeito ao passar o mouse: acende a tecnologia e dá um micro zoom */
+.tech-item:hover {
+    color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.05);
+}
+
+/* Ajustes finos para a tela do celular */
+@media (max-width: 768px) {
+    .tech-logos {
+        gap: 20px;
+    }
+    .tech-item {
+        font-size: 1.1rem;
+    }
+}
