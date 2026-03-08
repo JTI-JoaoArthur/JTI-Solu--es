@@ -114,11 +114,13 @@
             <h2>Fale com um Especialista</h2>
             <p>Preencha os dados abaixo e nossa equipe entrará em contato para entender a demanda tecnológica do seu negócio.</p>
             
-            <form action="https://formsubmit.co/jti.solucoes@outlook.com" method="POST">
+            <form action="https://api.web3forms.com/submit" method="POST" class="form-jti">
                 
-                <input type="hidden" name="_subject" value="Novo Contato via Site JTI!">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://jtisolucoes.dev.br/">
+                <input type="hidden" name="access_key" value="d85ec26f-30b7-4908-911c-631b5ab19bdc">
+                
+                <input type="hidden" name="subject" value="Novo Contato via Site JTI!">
+                
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                 
                 <input type="text" name="nome" placeholder="Seu Nome ou Empresa" required>
                 
@@ -132,7 +134,7 @@
                 
                 <button type="submit" class="cta-button">Enviar Mensagem</button>
             </form>
-        </div>
+            </div>
     </section>
 
     <footer>
@@ -242,12 +244,12 @@
             });
         }
 
-// --- 3. Envio Silencioso do Formulário (Sem sair da página) ---
+        // --- 3. Envio Silencioso do Formulário (Sem sair da página) ---
         const formContato = document.querySelector('.form-jti');
         
         if (formContato) {
             formContato.addEventListener('submit', function(e) {
-                e.preventDefault(); // Impede o recarregamento e a tela branca da FormSubmit
+                e.preventDefault(); 
                 
                 const btnSubmit = formContato.querySelector('button[type="submit"]');
                 const textoOriginal = btnSubmit.innerText;
