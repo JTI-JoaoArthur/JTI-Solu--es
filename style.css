@@ -754,3 +754,18 @@ footer {
     background-size: 0.8rem auto;
     padding-right: 3rem; /* Espaço para o texto não bater na setinha */
 }
+
+.form-jti input::placeholder,
+.form-jti textarea::placeholder {
+    color: #555555;
+}
+
+/* Deixa o texto padrão do select esmaecido (igual ao placeholder) */
+.form-jti select:invalid {
+    color: #555555;
+}
+
+/* Garante que a primeira opção na lista suspensa também fique esmaecida */
+.form-jti select option[value=""] {
+    color: #555555;
+}
