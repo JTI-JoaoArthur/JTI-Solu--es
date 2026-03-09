@@ -609,13 +609,14 @@
             }
         }
 
-        /* --- FAIXA DE TECNOLOGIAS (LOGOS + NOMES) --- */
+       /* --- FAIXA DE TECNOLOGIAS (LOGOS + NOMES) --- */
         .tecnologias-bar {
-            padding: 40px 20px;
+            padding: 40px 10px; /* Reduzimos a margem lateral para ganhar espaço no celular */
             background-color: rgba(0, 0, 0, 0.2);
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             text-align: center;
+            overflow-x: hidden;
         }
 
         .tech-container {
@@ -632,23 +633,26 @@
             font-weight: 600;
         }
 
+        /* Computador: 1 Linha com 12 itens super espremidos, mas elegantes */
         .tech-logos {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 50px;
+            flex-wrap: nowrap; 
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 10px; /* Espaço bem curto no PC para caber os 12 */
         }
 
         .tech-item {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: flex-end; 
             gap: 8px;
             cursor: default;
             opacity: 0.4;
             filter: grayscale(100%);
             transition: all 0.3s ease;
+            flex: 1; 
         }
 
         .tech-item:hover {
@@ -658,25 +662,48 @@
         }
 
         .tech-icon {
-            font-size: 2.5rem;
+            font-size: 2.2rem; /* Logo um pouquinho menor no PC */
         }
 
         .tech-name {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #ffffff;
             font-weight: 500;
             letter-spacing: 0.5px;
+            text-align: center;
         }
 
-        /* Ajustes para a tela do celular */
-        @media (max-width: 768px) {
+        /* Tablet e Celular: Trava exata em 6 colunas (6/6) */
+        @media (max-width: 992px) {
             .tech-logos {
-                gap: 25px;
+                display: grid;
+                grid-template-columns: repeat(6, 1fr); /* Força matematicamente 6 itens por linha */
+                gap: 25px 2px; /* Margem lateral quase zero para os 6 caberem */
             }
+            
+            .tech-item {
+                flex: unset; 
+            }
+
             .tech-icon {
-                font-size: 2rem;
+                font-size: 1.5rem; /* Logo reduzida para caber no celular */
+            }
+
+            .tech-name {
+                font-size: 0.55rem; /* Fonte minúscula e refinada */
+            }
+        }
+        
+        /* Ajuste extremo de segurança para celulares menores (como iPhone SE ou mais antigos) */
+        @media (max-width: 400px) {
+            .tech-icon {
+                font-size: 1.3rem;
             }
             .tech-name {
-                font-size: 0.75rem;
+                font-size: 0.5rem; 
+                letter-spacing: 0; /* Tira o espaçamento para a palavra não quebrar */
+            }
+            .tech-logos {
+                gap: 20px 2px;
             }
         }
