@@ -769,3 +769,48 @@ footer {
 .form-jti select option[value=""] {
     color: #555555;
 }
+
+/* --- Ajustes do Rodapé (Mobile e Bloqueio de Link Azul) --- */
+.footer-company-info {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: #777777;
+}
+
+.footer-company-info span {
+    display: inline-block;
+}
+
+.footer-legal-links {
+    margin-top: 6px; 
+    font-size: 0.75rem;
+}
+
+.footer-legal-links a {
+    color: #777777; 
+    text-decoration: none; 
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-legal-links a:hover {
+    color: var(--text-light);
+}
+
+/* Força os links de telefone (que o celular cria sozinho) a não ficarem azuis */
+a[href^="tel"] {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+/* Quebra a linha da empresa/CNPJ/IE perfeitamente em 3 no celular */
+@media (max-width: 768px) {
+    .footer-company-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .footer-company-info .separator {
+        display: none; /* Esconde as barrinhas no celular */
+    }
+}
