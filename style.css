@@ -78,23 +78,24 @@ nav {
 }
 
 /* Alinhando a imagem e o texto */
+/* 1. Bloco Principal (Devolve o tamanho 1.7rem para o texto e centraliza os elementos) */
 .logo {
     display: flex;
-    align-items: center;
+    align-items: center; 
     gap: 12px;
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: var(--accent-hover);
+    font-size: 1.7rem; /* <- Devolve o tamanho correto da fonte */
+    font-weight: 500; 
+    color: var(--accent-hover); 
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: transform 0.3s ease;
     line-height: 1;
 }
 
-/* Controle exato do tamanho do brasão */
 .logo img {
-    height: 30px;
+    height: 30px; 
     width: auto;
+    transform: translateY(-4px); /* O número positivo empurra a imagem para baixo */
 }
 
 .logo:hover {
