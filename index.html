@@ -25,14 +25,9 @@
 
     <nav>
         <div class="nav-container">
-            <div class="logo">
-                <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
-                    <img src="brasao.jpg" alt="Brasão JTI Soluções" class="logo-animada">
-                    <span class="mascara-esteira">
-                        <span class="texto-animado">JTI Soluções</span>
-                    </span>
-                </a>
-            </div>
+            <a href="#" class="logo">
+                <img src="brasao.jpg" alt="Logo JTI Soluções">
+            </a>
             
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html#inicio">Início</a></li>
@@ -329,7 +324,6 @@
             });
         }
 
-        // --- NOVA TRAVA: Inteligência do Campo "Outros" ---
         const desafioSelect = document.getElementById('desafio');
         const mensagemTextarea = document.getElementById('mensagem');
 
@@ -355,7 +349,6 @@
                 const btnSubmit = formContato.querySelector('button[type="submit"]');
                 const textoOriginal = btnSubmit.innerText;
                 
-                // Muda o visual do botão enquanto envia
                 btnSubmit.innerText = 'Enviando...';
                 btnSubmit.style.opacity = '0.7';
                 btnSubmit.disabled = true;
@@ -371,15 +364,13 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    // Sucesso: Botão fica verde WhatsApp
                     btnSubmit.innerText = 'Mensagem Enviada com Sucesso!';
                     btnSubmit.style.background = 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)';
                     btnSubmit.style.color = '#fff';
                     btnSubmit.style.opacity = '1';
                     
-                    formContato.reset(); // Limpa os campos automaticamente
+                    formContato.reset(); 
                     
-                    // Retorna o botão ao normal depois de 4 segundos
                     setTimeout(() => {
                         btnSubmit.innerText = textoOriginal;
                         btnSubmit.style.background = '';
@@ -388,7 +379,6 @@
                     }, 4000);
                 })
                 .catch(error => {
-                    // Se der erro de internet
                     btnSubmit.innerText = 'Erro na conexão. Tente novamente.';
                     btnSubmit.style.background = '#ff6b6b';
                     

@@ -22,29 +22,30 @@ body {
     min-height: 100vh;
 }
 
-/* --- Barra de Navegação (Efeito Vidro Premium) --- */
+/* --- Barra de Navegação (Efeito Vidro Apple - Proporções Exatas) --- */
 nav {
     position: fixed;
     top: 0;
     width: 100%;
-    /* Baixamos para 0.3 (30% de cor, 70% transparente) */
-    background: rgba(10, 15, 22, 0.3); 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    /* Cor de fundo escura JTI + Desfoque estilo Apple */
+    background: rgba(10, 15, 22, 0.6); 
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     z-index: 1000;
-    transition: all 0.1s ease;
+    transition: all 0.3s ease;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Distribui logo, menu e CTA perfeitamente */
     align-items: center;
-    max-width: 1400px;
+    max-width: 980px; /* Largura cravada do conteúdo central da Apple */
     margin: 0 auto;
-    height: 70px;
+    height: 44px; /* Altura exata da barra Apple (ultra-compacta) */
     width: 100%;
     position: relative;
+    padding: 0 22px;
 }
 
 /* --- ESTILOS DO NOVO BOTÃO NO MENU (PREMIUM/PRATEADO) --- */
@@ -56,9 +57,9 @@ nav {
 .nav-btn {
     background: linear-gradient(135deg, #ffffff 0%, #c0c0c0 100%);
     color: #000000;
-    padding: 0.5rem 1.2rem;
+    padding: 0.3rem 0.8rem; /* Reduzido para caber na barra Apple */
     border-radius: 50px;
-    font-size: 0.9rem;
+    font-size: 0.75rem; /* 12px igual os links */
     font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -66,7 +67,7 @@ nav {
 }
 
 .nav-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
     background: #ffffff;
 }
@@ -77,64 +78,45 @@ nav {
     }
 }
 
-/* Alinhando a imagem e o texto */
-/* 1. Bloco Principal (Devolve o tamanho 1.7rem para o texto e centraliza os elementos) */
+/* --- LOGO (Apenas Imagem) --- */
 .logo {
     display: flex;
     align-items: center; 
-    gap: 12px;
-    font-size: 1.7rem; /* <- Devolve o tamanho correto da fonte */
-    font-weight: 500; 
-    color: var(--accent-hover); 
-    letter-spacing: 0.5px;
     cursor: pointer;
     transition: transform 0.3s ease;
-    line-height: 1;
 }
 
 .logo img {
-    height: 30px; 
+    height: 18px; /* Reduzido drasticamente para caber na estética minimalista */
     width: auto;
-    transform: translateY(-4px); /* O número positivo empurra a imagem para baixo */
 }
 
 .logo:hover {
     transform: scale(1.05);
 }
 
+/* --- LINKS DE NAVEGAÇÃO --- */
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 32px; /* Distância generosa entre os itens, visual limpo da Apple */
     list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.8); /* Cinza claro da Apple */
     text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    position: relative;
+    font-size: 12px; /* 0.75rem - Minúsculo e elegante */
+    font-weight: 400; /* Regular, sem peso agressivo */
+    letter-spacing: -0.01em;
     transition: color 0.3s ease;
-    padding: 0.5rem 0;
+    padding: 0;
 }
 
 .nav-links a:hover {
-    color: var(--accent-hover);
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
+    color: #ffffff; /* Acende o branco, sem aquele sublinhado antigo */
 }
 
 /* Menu responsivo */
@@ -153,11 +135,11 @@ nav {
     transition: all 0.3s ease;
 }
 
-/* Responsivo - Menu Mobile e Tablet (LIMPO E CORRIGIDO) */
+/* Responsivo - Menu Mobile e Tablet */
 @media (max-width: 992px) {
     .nav-container {
-        padding: 1rem 0;
-        height: auto;
+        padding: 0 1.5rem;
+        height: 48px;
     }
 
     .nav-links {
@@ -190,7 +172,8 @@ nav {
         padding: 0.9rem 1.2rem;
         text-align: left;
         border-bottom: 1px solid #1a1a1a;
-        font-size: 0.95rem;
+        font-size: 0.95rem; /* No celular volta a ser maior para o dedo clicar */
+        color: var(--text-light);
     }
 
     .nav-links li:last-child a {
@@ -204,7 +187,7 @@ nav {
 
 /* Banner Principal */
 .hero {
-    min-height: calc(85vh - 70px);
+    min-height: calc(85vh - 44px); /* Ajustado para descontar a nova barra menor */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -427,8 +410,6 @@ nav {
     box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.9), 0px 6px 20px rgba(37, 211, 102, 0.5);
 }
 
-/* --- Seção de Formulário de Contato --- */
-
 /* --- Validação Visual do Formulário --- */
 .error-msg {
     color: #ff6b6b;
@@ -443,13 +424,11 @@ nav {
     animation: fadeIn 0.3s ease;
 }
 
-/* Borda vermelha piscando suavemente se estiver errado */
 .form-jti input.invalid {
     border-color: #ff6b6b;
     box-shadow: 0 0 0 1px #ff6b6b;
 }
 
-/* Borda verde confirmando que está perfeito */
 .form-jti input.valid {
     border-color: #25D366;
     box-shadow: 0 0 0 1px #25D366;
@@ -504,25 +483,18 @@ nav {
     cursor: pointer;
 }
 
-/* Garante que a lista suspensa de opções também fique preta e elegante */
 .form-jti select option {
     background-color: var(--dark-bg);
     color: var(--text-light);
     padding: 10px;
 }
 
-/* O brilho quando o cliente clica para digitar ou selecionar */
 .form-jti input:focus,
 .form-jti select:focus,
 .form-jti textarea:focus {
     outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 1px var(--accent); 
-}
-
-.form-jti input::placeholder,
-.form-jti textarea::placeholder {
-    color: #555555;
 }
 
 .form-jti button {
@@ -595,7 +567,6 @@ footer {
     font-size: 0.85rem;
 }
 
-/* Responsividade do Rodapé */
 @media (max-width: 768px) {
     .footer-container {
         grid-template-columns: 1fr;
@@ -649,7 +620,7 @@ footer {
     }
 }
 
-/* --- FAIXA DE TECNOLOGIAS (LOGOS + NOMES) --- */
+/* --- FAIXA DE TECNOLOGIAS --- */
 .tecnologias-bar {
     padding: 40px 10px;
     background-color: rgba(0, 0, 0, 0.2);
@@ -673,7 +644,6 @@ footer {
     font-weight: 600;
 }
 
-/* Computador: 1 Linha com 12 itens super espremidos, mas elegantes */
 .tech-logos {
     display: flex;
     flex-wrap: nowrap;
@@ -713,28 +683,23 @@ footer {
     text-align: center;
 }
 
-/* Tablet e Celular: Trava exata em 6 colunas (6/6) */
 @media (max-width: 992px) {
     .tech-logos {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         gap: 25px 2px;
     }
-    
     .tech-item {
         flex: unset;
     }
-
     .tech-icon {
         font-size: 1.5rem;
     }
-
     .tech-name {
         font-size: 0.55rem;
     }
 }
 
-/* Ajuste extremo de segurança para celulares menores */
 @media (max-width: 400px) {
     .tech-icon {
         font-size: 1.3rem;
@@ -747,15 +712,16 @@ footer {
         gap: 20px 2px;
     }
 }
-/* --- Remove o estilo padrão do navegador no campo Select e adiciona seta prateada --- */
+
+/* --- Ajustes do Select --- */
 .form-jti select {
-    appearance: none; /* Tira o estilo padrão do Chrome/Windows */
-    -webkit-appearance: none; /* Tira o estilo teimoso do Safari/macOS */
+    appearance: none;
+    -webkit-appearance: none;
     background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23c0c0c0%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
     background-repeat: no-repeat;
     background-position: right 1.2rem top 50%;
     background-size: 0.8rem auto;
-    padding-right: 3rem; /* Espaço para o texto não bater na setinha */
+    padding-right: 3rem;
 }
 
 .form-jti input::placeholder,
@@ -763,12 +729,10 @@ footer {
     color: #555555;
 }
 
-/* Deixa o texto padrão do select esmaecido (igual ao placeholder) */
 .form-jti select:invalid {
     color: #555555;
 }
 
-/* Garante que a primeira opção na lista suspensa também fique esmaecida */
 .form-jti select option[value=""] {
     color: #555555;
 }
@@ -800,13 +764,11 @@ footer {
     color: var(--text-light);
 }
 
-/* Força os links de telefone (que o celular cria sozinho) a não ficarem azuis */
 a[href^="tel"] {
     color: inherit !important;
     text-decoration: none !important;
 }
 
-/* Quebra a linha da empresa/CNPJ/IE perfeitamente em 3 no celular */
 @media (max-width: 768px) {
     .footer-company-info {
         display: flex;
@@ -814,51 +776,6 @@ a[href^="tel"] {
         gap: 4px;
     }
     .footer-company-info .separator {
-        display: none; /* Esconde as barrinhas no celular */
-    }
-}
-
-/* --- Ajustes do Rodapé (Mobile e Bloqueio de Link Azul) --- */
-.footer-company-info {
-    margin-top: 8px;
-    font-size: 0.75rem;
-    color: #777777;
-}
-
-.footer-company-info span {
-    display: inline-block;
-}
-
-.footer-legal-links {
-    margin-top: 6px; 
-    font-size: 0.75rem;
-}
-
-.footer-legal-links a {
-    color: #777777; 
-    text-decoration: none; 
-    margin: 0 10px;
-    transition: color 0.3s ease;
-}
-
-.footer-legal-links a:hover {
-    color: var(--text-light);
-}
-
-/* Força os links de telefone (que o celular cria sozinho) a não ficarem azuis */
-a[href^="tel"] {
-    color: inherit !important;
-    text-decoration: none !important;
-}
-
-/* Quebra a linha da empresa/CNPJ/IE perfeitamente em 3 no celular */
-@media (max-width: 768px) {
-    .footer-company-info {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    }
-    .footer-company-info .separator {
-        display: none; /* Esconde as barrinhas no celular */
+        display: none; 
     }
 }
