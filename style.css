@@ -38,9 +38,9 @@ nav {
 
 .nav-container {
     display: flex;
-    justify-content: center; /* <-- CORREÇÃO 1: Força tudo para o meio absoluto */
+    justify-content: center; 
     align-items: center;
-    gap: 48px; /* <-- CORREÇÃO 2: Mantém a logo, o menu e o botão separados entre si */
+    gap: 48px; 
     max-width: 980px; 
     margin: 0 auto;
     height: 44px; 
@@ -58,9 +58,9 @@ nav {
 .nav-btn {
     background: linear-gradient(135deg, #ffffff 0%, #c0c0c0 100%);
     color: #000000;
-    padding: 0.3rem 0.8rem; /* Reduzido para caber na barra Apple */
+    padding: 0.3rem 0.8rem; 
     border-radius: 50px;
-    font-size: 0.75rem; /* 12px igual os links */
+    font-size: 0.75rem; 
     font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -88,7 +88,7 @@ nav {
 }
 
 .logo img {
-    height: 18px; /* Reduzido drasticamente para caber na estética minimalista */
+    height: 18px; 
     width: auto;
 }
 
@@ -99,7 +99,7 @@ nav {
 /* --- LINKS DE NAVEGAÇÃO --- */
 .nav-links {
     display: flex;
-    gap: 32px; /* Distância generosa entre os itens, visual limpo da Apple */
+    gap: 32px; 
     list-style: none;
     align-items: center;
     margin: 0;
@@ -107,17 +107,17 @@ nav {
 }
 
 .nav-links a {
-    color: rgba(255, 255, 255, 0.8); /* Cinza claro da Apple */
+    color: rgba(255, 255, 255, 0.8); 
     text-decoration: none;
-    font-size: 12px; /* 0.75rem - Minúsculo e elegante */
-    font-weight: 400; /* Regular, sem peso agressivo */
+    font-size: 12px; 
+    font-weight: 400; 
     letter-spacing: -0.01em;
     transition: color 0.3s ease;
     padding: 0;
 }
 
 .nav-links a:hover {
-    color: #ffffff; /* Acende o branco, sem aquele sublinhado antigo */
+    color: #ffffff; 
 }
 
 /* Menu responsivo */
@@ -173,7 +173,7 @@ nav {
         padding: 0.9rem 1.2rem;
         text-align: left;
         border-bottom: 1px solid #1a1a1a;
-        font-size: 0.95rem; /* No celular volta a ser maior para o dedo clicar */
+        font-size: 0.95rem; 
         color: var(--text-light);
     }
 
@@ -186,38 +186,71 @@ nav {
     }
 }
 
-/* Banner Principal */
+/* --- Banner Principal (Engenharia Apple) --- */
 .hero {
-    min-height: calc(85vh - 44px); /* Ajustado para descontar a nova barra menor */
+    min-height: calc(85vh - 44px); 
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 2rem;
+    padding: 4rem 2rem;
     background: radial-gradient(circle at center, #1a1a1a 0%, var(--darker-bg) 70%);
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 860px; 
     animation: fadeIn 1s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 }
 
+/* O Ícone Superior (Proporção do Suporte da Apple) */
+.hero-icon {
+    margin-bottom: 1.2rem;
+}
+
+.hero-icon img {
+    width: 85px; /* Tamanho delicado igual a Apple */
+    height: auto;
+    opacity: 0.9;
+}
+
+/* O Título Gigante (Ajuste fino Apple) */
 .hero h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
+    /* 1. Força a fonte "Display" da Apple */
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    
+    /* 2. Tamanho um pouco menor (2.8rem) para o texto longo caber em 2 ou 3 linhas */
+    font-size: 2.8rem; 
+    
+    /* 3. Peso Semibold (Idêntico ao da Apple) em vez de Bold extra forte */
+    font-weight: 600; 
+    
+    /* 4. Espaçamento oficial da Apple para esse tamanho de fonte */
+    letter-spacing: -0.015em; 
+    
+    /* Dá um respiro maior entre as linhas do seu texto longo */
+    line-height: 1.18; 
+    margin-bottom: 2rem; 
+    max-width: 800px; 
+    
+    /* A sua cor prateada */
     background: linear-gradient(135deg, #ffffff 0%, #9ba4b5 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
+/* O Subtítulo (Mantido no CSS oculto caso você queira usar depois) */
 .hero p {
-    font-size: 1.25rem;
-    color: #a0aab5;
-    line-height: 1.6;
+    font-size: 1.35rem; 
+    font-weight: 400; 
+    letter-spacing: -0.01em;
+    color: #a0aab5; 
+    line-height: 1.4;
     margin-bottom: 2.5rem;
+    max-width: 700px; 
 }
 
 /* Botão Chamada para Ação */
@@ -246,10 +279,21 @@ nav {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Ajuste para a tela do celular*/
+/* Ajuste Responsivo para a tela do celular */
 @media (max-width: 768px) {
-    .hero h1 { font-size: 2.3rem; }
-    .hero p { font-size: 1.1rem; }
+    .hero {
+        padding: 6rem 1.5rem 3rem 1.5rem; 
+    }
+    .hero h1 { 
+        font-size: 2.2rem; /* Tamanho proporcional perfeito para celular */
+        letter-spacing: -0.01em;
+    }
+    .hero p { 
+        font-size: 1.15rem; 
+    }
+    .hero-icon img {
+        width: 65px; 
+    }
 }
 
 /* --- Seção de Soluções --- */
