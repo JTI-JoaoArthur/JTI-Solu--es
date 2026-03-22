@@ -38,11 +38,12 @@ nav {
 
 .nav-container {
     display: flex;
-    justify-content: space-between; /* Distribui logo, menu e CTA perfeitamente */
+    justify-content: center; /* <-- CORREÇÃO 1: Força tudo para o meio absoluto */
     align-items: center;
-    max-width: 980px; /* Largura cravada do conteúdo central da Apple */
+    gap: 48px; /* <-- CORREÇÃO 2: Mantém a logo, o menu e o botão separados entre si */
+    max-width: 980px; 
     margin: 0 auto;
-    height: 44px; /* Altura exata da barra Apple (ultra-compacta) */
+    height: 44px; 
     width: 100%;
     position: relative;
     padding: 0 22px;
