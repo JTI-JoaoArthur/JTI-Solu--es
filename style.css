@@ -22,12 +22,11 @@ body {
     min-height: 100vh;
 }
 
-/* --- Barra de Navegação (Efeito Vidro Apple - Proporções Exatas) --- */
+/* --- Barra de Navegação (Efeito Vidro Apple) --- */
 nav {
     position: fixed;
     top: 0;
     width: 100%;
-    /* Cor de fundo escura JTI + Desfoque estilo Apple */
     background: rgba(10, 15, 22, 0.6); 
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
@@ -49,7 +48,7 @@ nav {
     padding: 0 22px;
 }
 
-/* --- ESTILOS DO NOVO BOTÃO NO MENU (PREMIUM/PRATEADO) --- */
+/* --- Botão no Menu (Premium/Prateado) --- */
 .nav-cta {
     display: flex;
     align-items: center;
@@ -186,126 +185,210 @@ nav {
     }
 }
 
-/* --- Banner Principal (Engenharia Apple) --- */
-.hero {
-    min-height: calc(85vh - 44px); 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* --- BANNER PRINCIPAL (Alinhamento cravado no topo) --- */
+.hero-apple {
+    /* Removemos o min-height e o flex que empurravam tudo para o meio da tela */
+    display: block; 
     text-align: center;
-    padding: 4rem 2rem;
-    background: radial-gradient(circle at center, #1a1a1a 0%, var(--darker-bg) 70%);
+    
+    /* MATEMÁTICA DA APPLE: 44px (Barra Nav) + 68px (Respiro) = 112px exatos no topo */
+    padding: 112px 20px 80px 20px; 
+    
+    /* Subimos o centro do gradiente para acompanhar o texto que agora está mais acima */
+    background: radial-gradient(circle at center 30%, #1a1a1a 0%, var(--darker-bg) 80%);
 }
 
-.hero-content {
-    max-width: 860px; 
-    animation: fadeIn 1s ease-out;
+.hero-apple-content {
+    max-width: 980px; /* A largura exata do contentor da Apple */
+    width: 100%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
+    animation: fadeIn 1s ease-out;
 }
 
-/* O Ícone Superior (Proporção do Suporte da Apple) */
-.hero-icon {
-    margin-bottom: 1.2rem;
+/* 1. A LOGO (Simetria perfeita: 68px de respiro) */
+.hero-apple-icon {
+    margin-bottom: 68px; /* Exatamente a mesma distância invisível que existe até a barra do topo */
 }
 
-.hero-icon img {
-    width: 85px; /* Tamanho delicado igual a Apple */
+.hero-apple-icon img {
+    width: 159px; 
     height: auto;
-    opacity: 0.9;
+    display: block;
+    opacity: 0.95;
 }
 
-/* O Título Gigante (Ajuste fino Apple) */
-.hero h1 {
-    /* 1. Força a fonte "Display" da Apple */
+/* 2. O TÍTULO GIGANTE (Sem margens extras para colar no botão) */
+.hero-apple-title {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 48px;
+    font-weight: 500; 
+    letter-spacing: -0.003em;
+    line-height: 1.08;
+    
+    margin: 0; /* ZERADO: Removemos a margem para espelhar a estrutura da Apple */
+    max-width: 860px;
+    color: rgba(245, 245, 247, 0.9); 
+}
+
+/* 3. O BOTÃO PRINCIPAL (Tamanho Reduzido e Proporcional) */
+.hero-apple-btn {
+    display: inline-block;
+    background-color: #ffffff; 
+    color: #1d1d1f; 
+    
     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     
-    /* 2. Tamanho um pouco menor (2.8rem) para o texto longo caber em 2 ou 3 linhas */
-    font-size: 2.8rem; 
+    /* A FONTE REDUZIDA */
+    font-size: 19px;         /* Baixamos de 24px para 19px para ficar mais delicado */
+    font-weight: 400;        /* Mantido sem negrito */
+    letter-spacing: 0.005em; /* Espaçamento levemente ajustado para o novo tamanho */
+    line-height: 1.16667;
+    -webkit-font-smoothing: antialiased;
     
-    /* 3. Peso Semibold (Idêntico ao da Apple) em vez de Bold extra forte */
-    font-weight: 600; 
-    
-    /* 4. Espaçamento oficial da Apple para esse tamanho de fonte */
-    letter-spacing: -0.015em; 
-    
-    /* Dá um respiro maior entre as linhas do seu texto longo */
-    line-height: 1.18; 
-    margin-bottom: 2rem; 
-    max-width: 800px; 
-    
-    /* A sua cor prateada */
-    background: linear-gradient(135deg, #ffffff 0%, #9ba4b5 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* O Subtítulo (Mantido no CSS oculto caso você queira usar depois) */
-.hero p {
-    font-size: 1.35rem; 
-    font-weight: 400; 
-    letter-spacing: -0.01em;
-    color: #a0aab5; 
-    line-height: 1.4;
-    margin-bottom: 2.5rem;
-    max-width: 700px; 
-}
-
-/* Botão Chamada para Ação */
-.cta-button {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--darker-bg);
-    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-    border: none;
-    border-radius: 50px;
     text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    padding: 12px 28px; /* Reduzi o espaço interno (padding) para o botão encolher junto com a letra */
+    border-radius: 980px; 
+    
+    margin-top: 37px; /* Mantida a sua distância exata! */
+    
+    transition: all 0.2s ease;
 }
 
-.cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
-    background: #ffffff;
+.hero-apple-btn:hover {
+    transform: scale(0.98); 
+    background-color: #f5f5f7; 
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Ajuste Responsivo para a tela do celular */
+/* Ajuste Responsivo (Para celular) */
 @media (max-width: 768px) {
-    .hero {
-        padding: 6rem 1.5rem 3rem 1.5rem; 
+    .hero-apple {
+        padding-top: 120px; /* Mantém a simetria no topo no mobile */
     }
-    .hero h1 { 
-        font-size: 2.2rem; /* Tamanho proporcional perfeito para celular */
-        letter-spacing: -0.01em;
+    .hero-apple-icon {
+        margin-bottom: 40px; /* Proporção reduzida simetricamente */
     }
-    .hero p { 
-        font-size: 1.15rem; 
+    .hero-apple-icon img {
+        width: 100px;
     }
-    .hero-icon img {
-        width: 65px; 
+    .hero-apple-title {
+        font-size: 40px; 
+        letter-spacing: -0.005em;
+    }
+    .hero-apple-btn {
+        font-size: 17px; /* Fonte padrão e confortável para leitura no celular */
+        padding: 10px 24px;
+        margin-top: 24px; 
+    }
+}
+
+/* --- FAIXA DE TECNOLOGIAS (O PRÓXIMO BLOCO COM MAIS RESPIRO) --- */
+.tecnologias-bar {
+    padding: 80px 20px; /* Dobramos o espaço interno para isolar melhor as áreas */
+    background-color: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.tech-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tech-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 50px; /* Mais espaço para os ícones respirarem */
+    font-weight: 600;
+}
+
+.tech-logos {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    cursor: default;
+    opacity: 0.4;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.tech-item:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.tech-icon {
+    font-size: 2.2rem;
+}
+
+.tech-name {
+    font-size: 0.8rem;
+    color: #ffffff;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+@media (max-width: 992px) {
+    .tech-logos {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 25px 2px;
+    }
+    .tech-item {
+        flex: unset;
+    }
+    .tech-icon {
+        font-size: 1.5rem;
+    }
+    .tech-name {
+        font-size: 0.55rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .tech-icon {
+        font-size: 1.3rem;
+    }
+    .tech-name {
+        font-size: 0.5rem;
+        letter-spacing: 0;
+    }
+    .tech-logos {
+        gap: 20px 2px;
     }
 }
 
 /* --- Seção de Soluções --- */
 .solucoes {
-    padding: 5rem 2rem;
+    padding: 6rem 2rem; /* Mais respiro aqui também */
     background-color: var(--dark-bg);
     text-align: center;
 }
 
 .solucoes h2 {
     font-size: 2.5rem;
-    margin-bottom: 3.5rem;
+    margin-bottom: 4rem; /* Um pouco mais longe dos cards */
     color: var(--accent-hover);
     font-weight: 700;
 }
@@ -628,133 +711,6 @@ footer {
     }
     .footer-brand p {
         margin: 0 auto;
-    }
-}
-
-/* --- EFEITO DA LOGO E TEXTO EM ESTEIRA --- */
-.logo-animada {
-    position: relative;
-    z-index: 2;
-    animation: fadeLogo 0.4s ease forwards;
-    background-color: var(--darker-bg);
-}
-
-.mascara-esteira {
-    display: inline-block;
-    overflow: hidden;
-    line-height: 1;
-    padding-left: 2px;
-}
-
-.texto-animado {
-    display: inline-block;
-    transform: translateX(-105%);
-    opacity: 0;
-    animation: deslizarNoRitmo 1s ease-out forwards;
-    animation-delay: 0.2s;
-}
-
-@keyframes deslizarNoRitmo {
-    0% {
-        transform: translateX(-105%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-/* --- FAIXA DE TECNOLOGIAS --- */
-.tecnologias-bar {
-    padding: 40px 10px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    text-align: center;
-    overflow-x: hidden;
-}
-
-.tech-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.tech-title {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.4);
-    margin-bottom: 35px;
-    font-weight: 600;
-}
-
-.tech-logos {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-
-.tech-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 8px;
-    cursor: default;
-    opacity: 0.4;
-    filter: grayscale(100%);
-    transition: all 0.3s ease;
-    flex: 1;
-}
-
-.tech-item:hover {
-    opacity: 1;
-    filter: grayscale(0%);
-    transform: scale(1.1);
-}
-
-.tech-icon {
-    font-size: 2.2rem;
-}
-
-.tech-name {
-    font-size: 0.8rem;
-    color: #ffffff;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    text-align: center;
-}
-
-@media (max-width: 992px) {
-    .tech-logos {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 25px 2px;
-    }
-    .tech-item {
-        flex: unset;
-    }
-    .tech-icon {
-        font-size: 1.5rem;
-    }
-    .tech-name {
-        font-size: 0.55rem;
-    }
-}
-
-@media (max-width: 400px) {
-    .tech-icon {
-        font-size: 1.3rem;
-    }
-    .tech-name {
-        font-size: 0.5rem;
-        letter-spacing: 0;
-    }
-    .tech-logos {
-        gap: 20px 2px;
     }
 }
 
